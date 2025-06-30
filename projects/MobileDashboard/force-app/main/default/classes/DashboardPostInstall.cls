@@ -1,4 +1,4 @@
-global class DashboardPostInstall {
+global inherited sharing class DashboardPostInstall {
   global static void onInstall() {
     // add OOTB cards
     List<Mobile_Dashboard_Setting__c> existingSettings = [
