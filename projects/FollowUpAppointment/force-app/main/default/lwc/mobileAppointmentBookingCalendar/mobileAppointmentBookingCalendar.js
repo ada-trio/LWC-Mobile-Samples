@@ -109,8 +109,7 @@ export default class AaRebookingCalendar extends LightningElement {
     if (this.firstWeekDayIndex > 0) {
       for (let j = 0; j < this.firstWeekDayIndex; j++) {
         this.weekDaysArray.push(this.weekDaysArray.shift());
-        console.log("New array is : " + this.weekDaysArray);
-      }
+              }
     }
   }
 
@@ -137,8 +136,7 @@ export default class AaRebookingCalendar extends LightningElement {
   calculateDateFromMonth(date, month) {
     var newDate = date;
     newDate.setMonth(date.getMonth() + month);
-    console.log("new Month is : " + newDate);
-    return newDate;
+        return newDate;
   }
 
   getFirstDayOfWeek(date, index) {
@@ -147,8 +145,7 @@ export default class AaRebookingCalendar extends LightningElement {
     var day = d.getDay();
     var diff = d.getDate() - day + (start > day ? start - 7 : start);
     d.setDate(diff);
-    console.log("First day of week is : " + d.getDate());
-    return d;
+        return d;
   }
 
   getLastDayOfWeek(date, index) {
@@ -180,8 +177,7 @@ export default class AaRebookingCalendar extends LightningElement {
    */
 
   showWeekView(firstdayOfWeek) {
-    console.log("First day of the week is : " + firstdayOfWeek);
-    this.boolShowPopover = false;
+        this.boolShowPopover = false;
     this.noOfMonths = [];
     let firstArr = [];
     let tempRow = [];
@@ -197,8 +193,7 @@ export default class AaRebookingCalendar extends LightningElement {
         tempRow.push(firstArr);
       }
       this.noofWeeks.push(tempRow);
-      console.log("Size of new array is : " + this.noofWeeks.length);
-    }
+          }
     this.currentMonthYearLabel = this.getYearMonthTitle(
       this.currentSelectedDate
     );
@@ -594,8 +589,7 @@ export default class AaRebookingCalendar extends LightningElement {
   handleTouchStart(evt) {
     this.xDown = evt.touches[0].clientX;
     this.yDown = evt.touches[0].clientY;
-    console.log("Touch : Start : " + this.xDown);
-  }
+      }
 
   handleToucEnd(evt) {
     //Scroll to the following selected date ;
@@ -646,8 +640,7 @@ export default class AaRebookingCalendar extends LightningElement {
           inline: "end"
         });
       } catch (e) {
-        console.log("Error is : " + e);
-      }
+              }
     }
   }
 }

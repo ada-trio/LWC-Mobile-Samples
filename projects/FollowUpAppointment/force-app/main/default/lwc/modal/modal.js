@@ -10,8 +10,7 @@ export default class Modal extends LightningElement {
   closeModal(event) {
     event.preventDefault();
 
-    console.log("dispatching close modal::: " + this.showModal);
-    this.dispatchEvent(
+        this.dispatchEvent(
       new CustomEvent("closemodal", {
         composed: true,
         bubbles: true

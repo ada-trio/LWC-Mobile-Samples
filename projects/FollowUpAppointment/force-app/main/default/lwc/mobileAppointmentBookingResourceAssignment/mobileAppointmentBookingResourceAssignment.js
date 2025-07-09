@@ -38,8 +38,7 @@ export default class MobileAppointmentBookingResourceAssignment extends Lightnin
   handleAssignmentMethodChange(event) {
     event.preventDefault();
 
-    console.log("Mobile Worker Method Changed to::: " + event.target.value);
-    const assignmentMethodEvent = new CustomEvent("onassignmentmethodchanged", {
+        const assignmentMethodEvent = new CustomEvent("onassignmentmethodchanged", {
       detail: {
         assignmentMethod: event.target.value,
         selecteddate: this.selecteddate

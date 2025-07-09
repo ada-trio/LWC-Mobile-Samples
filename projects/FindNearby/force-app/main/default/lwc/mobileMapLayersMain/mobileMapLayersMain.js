@@ -419,6 +419,5 @@ export default class MobileMapLayersMain extends NavigationMixin(
   }
 
   handleError(error) {
-    console.log(error);
-  }
+      }
 }

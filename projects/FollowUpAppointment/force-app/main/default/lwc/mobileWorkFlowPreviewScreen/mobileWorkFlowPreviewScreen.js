@@ -28,8 +28,7 @@ export default class MobileWorkFlowPreviewScreen extends LightningElement {
     return this.currentScreen;
   }
   set screenno(value) {
-    console.log("screen no value is : " + value);
-    if (value) {
+        if (value) {
       this.currentScreen = value;
     }
   }
