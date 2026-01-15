@@ -26,8 +26,7 @@ export const IMAGE_EXT = "jpeg";
 export const IMAGE_MIME_TYPE = "image/" + IMAGE_EXT;
 
 export function log(msg) {
-  console.log(`[${new Date().toJSON()}] - ${msg}`);
-}
+  }
 
 export function debug(msg) {
   if (DEBUG_LOGS) {

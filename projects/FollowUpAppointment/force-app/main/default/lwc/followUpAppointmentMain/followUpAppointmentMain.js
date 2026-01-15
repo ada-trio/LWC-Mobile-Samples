@@ -93,8 +93,7 @@ export default class followUpAppointmentMain extends LightningElement {
       this.recordName = data.apiName;
     } else {
       this.record = null;
-      console.log("Error while get record is  : " + error);
-    }
+          }
   }
 
   get objectApiName() {
@@ -115,11 +114,9 @@ export default class followUpAppointmentMain extends LightningElement {
       .then((settings) => {
         if (settings.error || settings.error2) {
           let error = settings.error ? settings.error : settings.error2;
-          console.log("Error while retrieving settings object: " + error);
-          this.allowScrolling();
+                    this.allowScrolling();
         } else {
-          console.log("Got settings object successfully");
-          this.settings = settings;
+                    this.settings = settings;
 
           this.operatingHoursId = settings.operatingHoursId;
           this.schedulingPolicyId = settings.schedulingPolicyId;
@@ -140,10 +137,7 @@ export default class followUpAppointmentMain extends LightningElement {
             this.hideHeader = true;
             this.hideNextButton = true;
             this.hideBackButton = true;
-            console.log(
-              "*** We couldn’t launch this action. Ask your admin for help. ***"
-            );
-          } else {
+                      } else {
             for (let index = 1; index < 4; index++) {
               if (this.settings["fieldsToShowPage" + index] !== "null") {
                 this.pagesArray.push(index);
@@ -191,8 +185,7 @@ export default class followUpAppointmentMain extends LightningElement {
         }
       })
       .catch((error) => {
-        console.log("Error while retrieving settings object - ", error);
-        this.allowScrolling();
+                this.allowScrolling();
       });
   }
 
@@ -203,16 +196,14 @@ export default class followUpAppointmentMain extends LightningElement {
 
   callCreateRecordClass(arrivalWindowStartTime, arrivalWindowEndTime) {
     var querySelector = this.template.querySelectorAll("lightning-input-field");
-    console.log("-- List of fields to update the new records");
-    querySelector.forEach((field) => {
+        querySelector.forEach((field) => {
       var index = this.listOfFields.findIndex((i) =>
         i.includes(
           field.parentElement.objectApiName + "," + field.fieldName + ","
         )
       );
       this.listOfFields[index] = this.listOfFields[index] + "," + field.value;
-      console.log("-- ", this.listOfFields[index]);
-    });
+          });
 
     createRecord({
       recordToCreate: this.settings.recordToCreate,
@@ -224,22 +215,14 @@ export default class followUpAppointmentMain extends LightningElement {
     })
       .then((newRecord) => {
         if (newRecord.error || newRecord.DML) {
-          console.log("-- Error : ", newRecord.error);
-          console.log("-- DML : ", newRecord.DML);
-        } else if (newRecord.success) {
+                            } else if (newRecord.success) {
           this.newRecordId = newRecord.SAId;
           this.newRecordNumber = newRecord.SANumber;
-          console.log("-- newRecordId : ", this.newRecordId);
-          console.log("-- newRecordNumber : ", this.newRecordNumber);
-          this.scheduleSAMethod(this.newRecordId);
+                              this.scheduleSAMethod(this.newRecordId);
         }
       })
       .catch((error) => {
-        console.log(
-          "-- error while creating record : " + JSON.stringify(error)
-        );
-        console.log("-- error : ", error);
-        this.allowScrolling();
+                        this.allowScrolling();
       });
   }
 
@@ -249,8 +232,7 @@ export default class followUpAppointmentMain extends LightningElement {
         .querySelector("c-mobile-appointment-booking-landing")
         .scheduleSAMethod(newRecordId);
     } catch (error) {
-      console.log("Error while scheduling SA : " + error.message);
-    } finally {
+          } finally {
       this.allowScrolling();
     }
   }

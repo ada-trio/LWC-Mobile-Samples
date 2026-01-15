@@ -74,8 +74,7 @@ export default class MobileWorkFlowPage extends LightningElement {
   @wire(getObjectInfo, { objectApiName: "ServiceAppointment" })
   serviceAppointmentInfo({ error, data }) {
     if (data) {
-      console.log("-- got serviceAppointmentInfo -> ", data.fields);
-      this.error = undefined;
+            this.error = undefined;
       for (const field in data.fields) {
         this.serviceAppointmentFields.set(
           `${data.fields[field].apiName}`,
@@ -83,8 +82,7 @@ export default class MobileWorkFlowPage extends LightningElement {
         );
       }
     } else if (error) {
-      console.log("-- error serviceAppointmentInfo -> ", error);
-      this.error = error;
+            this.error = error;
       this.objectInfo = undefined;
     }
   }
@@ -92,8 +90,7 @@ export default class MobileWorkFlowPage extends LightningElement {
   @wire(getObjectInfo, { objectApiName: "WorkOrder" })
   workOrderInfo({ error, data }) {
     if (data) {
-      console.log("-- got workOrderInfo -> ", data.fields);
-      this.error = undefined;
+            this.error = undefined;
       for (const field in data.fields) {
         this.workOrderFields.set(
           `${data.fields[field].apiName}`,
@@ -101,8 +98,7 @@ export default class MobileWorkFlowPage extends LightningElement {
         );
       }
     } else if (error) {
-      console.log("-- error workOrderInfo -> ", error);
-      this.error = error;
+            this.error = error;
       this.objectInfo = undefined;
     }
   }
@@ -110,8 +106,7 @@ export default class MobileWorkFlowPage extends LightningElement {
   @wire(getObjectInfo, { objectApiName: "WorkOrderLineItem" })
   workOrderLineItemInfo({ error, data }) {
     if (data) {
-      console.log("-- got workOrderLineItemInfo -> ", data.fields);
-      this.error = undefined;
+            this.error = undefined;
       for (const field in data.fields) {
         this.workOrderLineItemFields.set(
           `${data.fields[field].apiName}`,
@@ -119,28 +114,24 @@ export default class MobileWorkFlowPage extends LightningElement {
         );
       }
     } else if (error) {
-      console.log("-- error workOrderLineItemInfo -> ", error);
-      this.error = error;
+            this.error = error;
       this.objectInfo = undefined;
     }
   }
 
   set isParentComponentChanged(value) {
-    console.log("Reload child component called : " + value);
-    this.callAPEX();
+        this.callAPEX();
   }
   @api get isParentComponentChanged() {
     return false;
   }
 
   handleEditButtonEvent() {
-    console.log("Edit button pressed");
-    this.showModal = true;
+        this.showModal = true;
   }
 
   @api closeModal() {
-    console.log("Modal Close event called");
-    this.callAPEX();
+        this.callAPEX();
     this.showModal = false;
   }
 
@@ -171,21 +162,17 @@ export default class MobileWorkFlowPage extends LightningElement {
     let arr = [];
     this.dataLoaded = false;
     if (this.currentScreenDisplayed === 1) {
-      console.log("Save event called for screen1");
-      this.screenTitle1 = this.currentScreenTitle;
+            this.screenTitle1 = this.currentScreenTitle;
       this.selectedFieldList1 = this.selected;
-      console.log("Selected fields are : " + this.selectedFieldList1);
-    }
+          }
 
     if (this.currentScreenDisplayed === 2) {
-      console.log("Save event called for screen2");
-      this.screenTitle2 = this.currentScreenTitle;
+            this.screenTitle2 = this.currentScreenTitle;
       this.selectedFieldList2 = this.selected;
     }
 
     if (this.currentScreenDisplayed === 3) {
-      console.log("Save event called for screen3");
-      this.screenTitle3 = this.currentScreenTitle;
+            this.screenTitle3 = this.currentScreenTitle;
       this.selectedFieldList3 = this.selected;
     }
     arr.push(this.currentScreenDisplayed); // 0
@@ -227,8 +214,7 @@ export default class MobileWorkFlowPage extends LightningElement {
           break;
       }
     }
-    console.log("Selected field string is : " + strField);
-    arr.push(strField); // 2
+        arr.push(strField); // 2
     this.handleSaveFieldDataApexCall(arr);
   }
 
@@ -240,8 +226,7 @@ export default class MobileWorkFlowPage extends LightningElement {
           this.dataLoaded = true;
           throw new Error(data.error);
         } else {
-          console.log("saved successfully");
-          this.dataLoaded = true;
+                    this.dataLoaded = true;
           if (
             this.dialgBoxTitle ===
             this.LABELS.FollowUpAppointments_new_step_text_label
@@ -295,16 +280,12 @@ export default class MobileWorkFlowPage extends LightningElement {
       this.fieldLayoutArray.push(arr);
     }
     this.filter();
-    console.log(
-      "Value in fieldLayoutArray is : " + this.fieldLayoutArray.length
-    );
-  }
+      }
 
   maxPageNoTitle = 4;
   minPageNoTitle = 1;
   callAPEX() {
-    console.log("Apex method called ");
-
+    
     /**
      * GET object list
      */
@@ -333,8 +314,7 @@ export default class MobileWorkFlowPage extends LightningElement {
         }
       })
       .catch((error) => {
-        console.log("Error while getting object list : " + error);
-      });
+              });
 
     /**
      * Function to get saved fields and screen data
@@ -360,8 +340,7 @@ export default class MobileWorkFlowPage extends LightningElement {
             this.showScreen1 = true;
             let fieldList = data.Fields_To_Show_Page_1__c;
             this.currentScreenDisplayed = this.currentScreenDisplayed + 1;
-            console.log("Saved field values are : " + fieldList);
-            this.selectedFieldList1 = [];
+                        this.selectedFieldList1 = [];
             if (fieldList && fieldList.length > 0) {
               const myArray = fieldList.split(";"); // split the fields by ';'
               if (myArray.length > 0) {
@@ -466,8 +445,7 @@ export default class MobileWorkFlowPage extends LightningElement {
         }
       })
       .catch((error) => {
-        console.log("Error while getting object list : " + error);
-      });
+              });
   }
 
   validateLeftRightArrowButtons() {
@@ -479,8 +457,7 @@ export default class MobileWorkFlowPage extends LightningElement {
     this.isRightButtonDisabled2 = false;
     this.isRightButtonDisabled3 = false;
 
-    console.log("Page no displayed are : " + this.minPageNoTitle);
-    switch (this.minPageNoTitle) {
+        switch (this.minPageNoTitle) {
       case 2: {
         if (this.showScreen1) {
           this.isLeftButtonDisabled1 = true;
@@ -523,8 +500,7 @@ export default class MobileWorkFlowPage extends LightningElement {
 
   selectedObject = "";
   handleObjectNameSelected(event) {
-    console.log("On object selected called : " + event.detail.value);
-    this.selectedObject = event.detail.value;
+        this.selectedObject = event.detail.value;
     //this.selectedFields =[{label:'', value:''}];
     /**
      * GET field list
@@ -537,8 +513,7 @@ export default class MobileWorkFlowPage extends LightningElement {
         if (data.error) {
           throw new Error(data.error);
         } else {
-          console.log("Got the field names successfully " + data);
-          this.fieldNameList = [];
+                    this.fieldNameList = [];
           for (let i = 0; i < data.length; i++) {
             this.fieldNameList = [
               ...this.fieldNameList,
@@ -551,8 +526,7 @@ export default class MobileWorkFlowPage extends LightningElement {
       })
       .catch((error) => {
         this.dataLoaded = true;
-        console.log("Error while getting object list : " + error);
-      });
+              });
   }
 
   handleAddFieldOnClickEvent() {
@@ -564,10 +538,7 @@ export default class MobileWorkFlowPage extends LightningElement {
       arr.key = j;
       this.fieldLayoutArray.push(arr);
     }
-    console.log(
-      "Value in fieldLayoutArray is : " + this.fieldLayoutArray.length
-    );
-  }
+      }
 
   filteredFieldNames = [];
   searchString = "";
@@ -583,8 +554,7 @@ export default class MobileWorkFlowPage extends LightningElement {
             return true;
           }
         };
-    console.log("filter event called");
-    const selected = new Set(this.selected);
+        const selected = new Set(this.selected);
     this.filteredFieldNames = this.fieldNameList.filter(
       (option) => filter.test(option.value) || selected.has(option.value)
     );
@@ -599,8 +569,7 @@ export default class MobileWorkFlowPage extends LightningElement {
   }
 
   @api handleAddScreenEvent() {
-    console.log("Add screen event called ");
-    this.dialgBoxTitle = this.LABELS.FollowUpAppointments_new_step_text_label;
+        this.dialgBoxTitle = this.LABELS.FollowUpAppointments_new_step_text_label;
     this.disableAddStepBtn = false;
     if (this.currentScreenDisplayed < 3) {
       this.currentScreenDisplayed = this.currentScreenDisplayed + 1;
@@ -652,8 +621,7 @@ export default class MobileWorkFlowPage extends LightningElement {
   selectedFields = [];
   editButtonEventCalledFromChild(event) {
     this.dialgBoxTitle = this.LABELS.FollowUpAppointments_edit_step_text_label;
-    console.log("Selected Page is : " + event.detail);
-    this.currentScreenDisplayed = event.detail;
+        this.currentScreenDisplayed = event.detail;
     this.showModal = true;
 
     this.selectedObject = null;
@@ -725,8 +693,7 @@ export default class MobileWorkFlowPage extends LightningElement {
           if (data.error) {
             throw new Error(data.error);
           } else {
-            console.log("Got the field names successfully");
-            this.fieldNameList = [];
+                        this.fieldNameList = [];
             for (let i = 0; i < data.length; i++) {
               this.fieldNameList = [
                 ...this.fieldNameList,
@@ -739,18 +706,15 @@ export default class MobileWorkFlowPage extends LightningElement {
         })
         .catch((error) => {
           this.dataLoaded = true;
-          console.log("Error while getting object list : " + error);
-        });
+                  });
     } else {
       this.dataLoaded = true;
-      console.log("No object selected");
-    }
+          }
   }
 
   deletePageNoCalled = -1;
   deleteScreenEventCalledFromChild(event) {
-    console.log("Selected Page is : " + event.detail);
-    this.deletePageNoCalled = event.detail;
+        this.deletePageNoCalled = event.detail;
     this.showDeleteDialogBox = true;
   }
 
@@ -786,8 +750,7 @@ export default class MobileWorkFlowPage extends LightningElement {
             this.dataLoaded = true;
             throw new Error(data.error);
           } else {
-            console.log("screen deleted successfully");
-            this.showToastMessages(
+                        this.showToastMessages(
               this.LABELS.FollowUpAppointments_settings_deleteScreenToastMessage.replace(
                 "{0}",
                 screenTitleTemp
@@ -844,8 +807,7 @@ export default class MobileWorkFlowPage extends LightningElement {
           }
         })
         .catch((error) => {
-          console.log("Error while deleting the screen : " + error);
-          this.dataLoaded = true;
+                    this.dataLoaded = true;
           this.showToastMessages(
             this.LABELS.FollowUpAppointments_settingPage_error_delete_screen,
             false
@@ -857,8 +819,7 @@ export default class MobileWorkFlowPage extends LightningElement {
   }
 
   duplicateEventCalledFromChild(event) {
-    console.log("Duplicate event called for page : " + event.detail);
-    let pageNo = event.detail;
+        let pageNo = event.detail;
     let screenTitleTemp = "";
     let fieldSelected = [];
     let toScreenNo;
@@ -920,9 +881,7 @@ export default class MobileWorkFlowPage extends LightningElement {
           break;
         }
       }
-      console.log("selected screen title : " + screenTitleTemp);
-      console.log("selected fields  : " + fieldSelected);
-
+            
       if (toScreenNo) {
         duplicateScreenData({ fromScreenNo: pageNo, toScreenNo: toScreenNo })
           .then((data) => {
@@ -942,10 +901,7 @@ export default class MobileWorkFlowPage extends LightningElement {
             }
           })
           .catch((error) => {
-            console.log(
-              "Error while duplicating the screen : " + error.message
-            );
-            this.dataLoaded = true;
+                        this.dataLoaded = true;
             this.showToastMessages(
               this.LABELS
                 .FollowUpAppointments_settingPage_error_duplicate_screen,
@@ -1029,8 +985,7 @@ export default class MobileWorkFlowPage extends LightningElement {
         }
       })
       .catch((error) => {
-        console.log("Error while shifting the screen : " + error);
-        this.dataLoaded = true;
+                this.dataLoaded = true;
         this.showToastMessages(
           "Error while shifting the screen : " + error.message,
           false

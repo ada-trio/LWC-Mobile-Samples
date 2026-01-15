@@ -66,8 +66,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
   set selectedDate(value) {
     if (value) {
       this._selectedDate = this.getDateWithoutTime(Date.parse(value));
-      console.log("Selected Date in timeSlot : " + this._selectedDate);
-      this.firstDayOfTheWeek = this.getFirstDayOfWeek(this._selectedDate, 0);
+            this.firstDayOfTheWeek = this.getFirstDayOfWeek(this._selectedDate, 0);
       this.lastDayOfTheWeek = this.getLastDayOfWeek(this._selectedDate, 0);
 
       this.handleTimeSlotTitle();
@@ -110,8 +109,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
     let slotsData;
 
     this.isWeekUpdated = true;
-    console.log("Week change in parent class " + date);
-    this.firstDayOfTheWeek = this.getFirstDayOfWeek(date, 0);
+        this.firstDayOfTheWeek = this.getFirstDayOfWeek(date, 0);
     this.lastDayOfTheWeek = this.getLastDayOfWeek(date, 0);
     this.selectedDate = date;
     slotsData = Object.values(
@@ -172,13 +170,11 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
 
   formatTimeSlots(timeSlotArray) {
     var formattedSlotArr = [];
-    console.log("---------- Time slots ----------");
-    let currentDate = new Date();
+        let currentDate = new Date();
     for (let i = 0; i < timeSlotArray.length; i++) {
       let array = [];
       array.dateTime = timeSlotArray[i];
-      console.log("Time slot : " + timeSlotArray[i]);
-      let timeSlot = timeSlotArray[i].split("#");
+            let timeSlot = timeSlotArray[i].split("#");
       let timeSlotDate = new Date(timeSlot[1].replace(/-/g, "/"));
       array.grade = timeSlot[2];
       if (timeSlotDate > currentDate) {
@@ -199,8 +195,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
         formattedSlotArr.push(array);
       }
     }
-    console.log("---------- Time slots ----------");
-    return this.formatUniqueArray(formattedSlotArr);
+        return this.formatUniqueArray(formattedSlotArr);
   }
 
   formatUniqueArray(timeSlotArray) {
@@ -264,8 +259,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
 
   handleDateSelectEvent(date) {
     this.timeSlotArrayByDate = [];
-    console.log("Handle date selected is : " + date);
-  }
+      }
 
   /**
    * CALL THIS METHOD WHEN TIMESLOT OBJECT IS UPDATED;
@@ -358,18 +352,14 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
       // APPROACH 2 : CHECK FOR EACH DATE IF ADDED IN THE CACHE ARRAY
       for (let i = 0; i < this.formattedTimeSlotArrayTemp.length; i++) {
         let date = new Date(this.formattedTimeSlotArrayTemp[i].date);
-        console.log("After Selected Date in loop is : " + date);
-        console.log("After Selected date : " + selectedDate);
-        if (selectedDate.getTime() === date.getTime()) {
+                        if (selectedDate.getTime() === date.getTime()) {
           isDateAdded = true;
-          console.log("After Selected date is true: " + selectedDate);
-          break;
+                    break;
         }
       }
     }
     if (!isDateAdded) {
-      console.log("Run apex class for query ");
-      this.callCustomEvent("trigergetslotapi", selectedDate);
+            this.callCustomEvent("trigergetslotapi", selectedDate);
     }
   }
 
@@ -406,8 +396,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
   handleTimeSlotClickEvent(event) {
     var selectedSlot = event.target.title;
     var startEndTimeArray = selectedSlot.split("#");
-    console.log("Selected slot is : " + selectedSlot);
-    if (startEndTimeArray.length > 1) {
+        if (startEndTimeArray.length > 1) {
       let startTime = this.getDateFromString(startEndTimeArray[0]);
       let endTime = this.getDateFromString(startEndTimeArray[1]);
       const customEvent = new CustomEvent("slotselection", {
@@ -438,8 +427,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
   }
 
   handleFilterClickEvent(event) {
-    console.log("Filter selected is : " + event.target.title);
-  }
+      }
 
   getFirstDayOfWeek(date, index) {
     var start = index >= 0 ? index : 0;
@@ -447,8 +435,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
     var day = d.getDay();
     var diff = d.getDate() - day + (start > day ? start - 7 : start);
     d.setDate(diff);
-    console.log("First day of week is : " + d.getDate());
-    let newDate = new Date(
+        let newDate = new Date(
       d.setDate(d.getDate() - this.showNoOfDaysBeforeAfterWeek)
     ).setHours(0, 0, 0, 0);
     return newDate;
@@ -473,8 +460,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
   executeScroll(selectedDate) {
     var temp = '"' + selectedDate + '"';
     var dataId = "[data-id=" + temp + "]";
-    console.log("Data is is : " + dataId);
-    let elementToShow = this.template.querySelector(dataId);
+        let elementToShow = this.template.querySelector(dataId);
     if (elementToShow) {
       try {
         if (this.previousElement) {
@@ -488,8 +474,7 @@ export default class MobileAppointmentBookingSlotsContainer extends LightningEle
         }
         this.previousElement = elementToShow;
       } catch (e) {
-        console.log("Error is : " + e);
-      }
+              }
     }
     this.isWeekUpdated = false;
   }

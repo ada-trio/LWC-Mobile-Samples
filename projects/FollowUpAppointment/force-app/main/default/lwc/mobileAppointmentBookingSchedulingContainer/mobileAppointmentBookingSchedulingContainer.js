@@ -186,25 +186,21 @@ export default class MobileAppointmentBookingSchedulingContainer extends Lightni
     return this.serviceTerritoryTimeZone;
   }
   set serviceterritorytimezone(value) {
-    console.log("this.serviceTerritoryTimeZone: " + value);
-    this.serviceTerritoryTimeZone = value;
+        this.serviceTerritoryTimeZone = value;
   }
 
   onDateSelected(event) {
     this.selectedDate = event.detail.date;
-    console.log("Selected date in main class : " + this.selectedDate);
-    let staticElement = this.template.querySelector('[data-id="calendar"]');
+        let staticElement = this.template.querySelector('[data-id="calendar"]');
     let top = staticElement.getBoundingClientRect().top;
-    console.log("The element is : " + top);
-    this.template
+        this.template
       .querySelector("c-mobile-appointment-booking-slots-container")
       .onPositionUpdated(top); // removed the assignment because of lint
   }
 
   onWeekChangeEvent(event) {
     this.selectedDate = event.detail.date;
-    console.log("On week change called");
-    this.template
+        this.template
       .querySelector("c-mobile-appointment-booking-slots-container")
       .onWeekUpdated(this.selectedDate); //removed the assignment because of lint
     this.runApexQueryToChangeEarlistStartDate(this.selectedDate);
@@ -230,8 +226,7 @@ export default class MobileAppointmentBookingSchedulingContainer extends Lightni
           this.selectedSlotEnd = new Date(data.date2);
         })
         .catch((error) => {
-          console.log("error is : " + error);
-        });
+                  });
     }
 
     this.setNewAppointmentSelectedText(
@@ -248,11 +243,7 @@ export default class MobileAppointmentBookingSchedulingContainer extends Lightni
       }
       case "updateNonAvailableDates": {
         this.nonAvailableDateArray = event.detail.value;
-        console.log(
-          "Array of the date not available : " +
-            this.nonAvailableDateArray.length
-        );
-        break;
+                break;
       }
       default: {
         break;
